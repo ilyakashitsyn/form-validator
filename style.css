@@ -1,10 +1,27 @@
-/*  Basic form styles  */
-.form-container {
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+:root {
+  --success-color: #77b254;
+  --error-color: #d84040;
+  --focus-color: #ff2df1;
+  --btn-color: #28a745;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   background: #f4f4f4;
+  margin: 0;
 }
 
 .form {
@@ -31,22 +48,34 @@
 .form__label {
   font-weight: bold;
   margin-bottom: 5px;
+  display: block;
 }
 
 /* Input field */
 .form__input {
   padding: 10px;
+  width: 100%;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 14px;
+}
+
+.form__input:focus {
+  outline: 0;
+  border-color: var(--focus-color);
+}
+
+.form__control--success .form__input {
+  border-color: var(--success-color);
 }
 
 /* Error: modifiers */
 .form__control--error .form__input {
-  border-color: red;
+  border-color: var(--error-color);
 }
 
 .form__error {
-  color: red;
+  color: var(--error-color);
   font-size: 12px;
   visibility: hidden;
 }
@@ -59,7 +88,7 @@
 .form__button {
   width: 100%;
   padding: 10px;
-  background: #28a745;
+  background: var(--btn-color);
   color: white;
   border: none;
   border-radius: 4px;
