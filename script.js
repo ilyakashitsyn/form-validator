@@ -36,33 +36,55 @@ const isValidEmail = email => {
   return re.test(String(email).toLowerCase());
 };
 
+// Check required fields
+const checkRequired = inputArr => {
+  inputArr.forEach(input => {
+    if (input.value.trim() === '') {
+      showError(input, `${getFieldName(input)} is required`);
+    } else {
+      showSuccess(input);
+    }
+  });
+};
+
+// Get field name
+const getFieldName = input => {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+};
+
 // Event listeners
+// form.addEventListener('submit', function (e) {
+//   e.preventDefault();
+
+//   if (username.value === '') {
+//     showError(username, 'Username is required');
+//   } else {
+//     showSuccess(username);
+//   }
+
+//   if (email.value === '') {
+//     showError(email, 'Email is required');
+//   } else if (!isValidEmail(email.value)) {
+//     showError(email, 'Email is not valid');
+//   } else {
+//     showSuccess(email);
+//   }
+
+//   if (password.value === '') {
+//     showError(password, 'Password is required');
+//   } else {
+//     showSuccess(password);
+//   }
+
+//   if (confirmPass.value === '') {
+//     showError(confirmPass, 'Confirm password is required');
+//   } else {
+//     showSuccess(confirmPass);
+//   }
+// });
+
 form.addEventListener('submit', function (e) {
   e.preventDefault();
 
-  if (username.value === '') {
-    showError(username, 'Username is required');
-  } else {
-    showSuccess(username);
-  }
-
-  if (email.value === '') {
-    showError(email, 'Email is required');
-  } else if (!isValidEmail(email.value)) {
-    showError(email, 'Email is not valid');
-  } else {
-    showSuccess(email);
-  }
-
-  if (password.value === '') {
-    showError(password, 'Password is required');
-  } else {
-    showSuccess(password);
-  }
-
-  if (confirmPass.value === '') {
-    showError(confirmPass, 'Confirm password is required');
-  } else {
-    showSuccess(confirmPass);
-  }
+  checkRequired([username, email, password, confirmPass]);
 });
